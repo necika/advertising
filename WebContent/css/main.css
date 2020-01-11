@@ -1,0 +1,118 @@
+*{
+    font-family: "montserrat", sans-serif;
+}
+
+body{
+    background-image: url("../img/img3.png");
+}
+
+.labels{
+    color:#fff;
+}
+
+.chklabels{
+    background-color:  rgb(52, 58, 64);
+}
+
+#master-wrap{
+    padding: 15px;
+}
+
+#master-wrap .content-wrap{
+    background-color: rgb(52, 58, 64);
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    margin : 5px;
+}
+
+.content-wrap .slika {
+    max-width: 100%;
+    text-align: center;
+    height: 400px;
+}
+
+.slika .img-oglas{
+    max-width: 100%;
+    height: inherit;
+}
+
+#master-wrap .element-wrap{
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+    text-align: center;
+	-moz-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+    margin-top: 5px;
+    height:  95%;
+    padding: 0px 5px 10px 5px;
+    max-width: 220px;
+    min-width: 220px;
+    color : black;
+    transition : background-color .5s, color .5s;
+}
+
+#master-wrap .element-wrap:hover{
+    background-color: #34495e;
+    color : white;
+}
+
+#master-wrap .recenzija-wrap {
+    background-color: #f8f8f8;
+    border-radius: 2px;
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.2);
+    margin-top: 5px;
+    color : black;
+}
+
+.recenzija-wrap .recenzija-sadrzaj{
+    padding : 15px 30px 0px 30px;
+}
+
+#master-wrap .kategorija-wrap{
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.2);
+    text-align: center;
+    -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.2);
+    margin-top: 5px;
+    color : black;
+}
+
+.element-wrap .img-slika {
+    max-width: 100%;
+    height: 200px;
+}
+
+.element-wrap a {
+    text-decoration: inherit;
+    color : inherit;
+}
+
+.title .text{
+    color: #fff;;
+}
+
+.showPage{
+    display: block;
+}
+.hidePage {
+    display: none;
+}
+
+.invalidacija-feed {
+    width: 100%;
+    margin-top : .25rem;
+    font-size: 80%;
+    color : red;;
+}
+
+a.tabic:hover{
+    cursor: pointer;
+}

@@ -1,0 +1,44 @@
+{
+    "Bela tehnika" : {
+      "naziv" : "Bela tehnika",
+      "opis" : "Ovde mozete pronaci aparate iz kategorije bele tehnike: ves masine, frizideri, zamrzivaci, sporeti i dr.",
+      "oglasi" : [ "\u0160PORET I6VSH", "Samsung mikrotalasna" ],
+      "obrisana" : false
+    },
+    "Motorna vozila" : {
+      "naziv" : "Motorna vozila",
+      "opis" : "U ovoj kategoriji se nalaze sva prevozna sredstva ukljucujuci \nautomobile, kamione, motocikle i druge",
+      "oglasi" : [ "Ford Focus IV", "Audi A3 1.4 tfsi" ],
+      "obrisana" : false
+    },
+    "Muzika" : {
+      "naziv" : "Muzika",
+      "opis" : "Kategorije vezana za prodaju muzickih instrumenata i ostalih muzickih komponenti.",
+      "oglasi" : [ ],
+      "obrisana" : false
+    },
+    "Tehnologija" : {
+      "naziv" : "Tehnologija",
+      "opis" : "Ovde mozete naci sve tehnoloske uredjaje kao sto su mobilini telefoni,\nprenosni racunari, kucni racunari i komponente za navedene",
+      "oglasi" : [ "Samsung Galaxy S10 Plus", "Huawei P30 Pro" ],
+      "obrisana" : false
+    },
+    "Nekretnine" : {
+      "naziv" : "Nekretnine",
+      "opis" : "Ovde mozete naci oglase vezane za nekretnine : kuce, stanovi, poslvovni prostori, garaze...",
+      "oglasi" : [ "Stan", "Poslovni Prostor" ],
+      "obrisana" : false
+    },
+    "Ostalo" : {
+      "naziv" : "Ostalo",
+      "opis" : "Raznovrsni oglasi pogodni za nalazenje retkih kolekcionarskih stvari",
+      "oglasi" : [ "Kancelarijski ormar", "Uv Led Lampa" ],
+      "obrisana" : false
+    },
+    "Odeca" : {
+      "naziv" : "Odeca",
+      "opis" : "Ovde se nalazi svi odevni predmeti kako za zene tako i za muskarce",
+      "oglasi" : [ "Zenska spavacica", "Majica" ],
+      "obrisana" : false
+    }
+  }

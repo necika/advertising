@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>InternetOglasi</title>
+		<link href="css/bootstrap.min.css" rel="stylesheet"> 
+		<link href="css/main.css" rel="stylesheet">     
+		<script src="js/vue.js"></script>
+		<script src="js/vue-router.js"></script>
+		<script src="js/axios.min.js"></script>	
+	</head>
+    <body>	
+		<div id="app">	
+			<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+				<div class="container">
+					<router-link to="/" class="navbar-brand">Internet Oglasi</router-link>
+					<div></div>
+					<div class="collapse navbar-collapse">
+						<ul class="navbar-nav ml-auto menu">		
+							<li class="nav-item"><a class="tabic nav-link" v-on:click="pretraga = !pretraga">Pretraga</a></li>	
+							<li class="nav-item dropdown" v-bind:class="{ show: kategorijeExpanded }">
+								<a class="nav-link dropdown-toggle tabic" id="navbarDropdown" role="button" data-toggle="dropdown" v-on:click="dropdownToggle" aria-haspopup="true" v-bind:aria-expanded="kategorijeExpanded">
+								  Kategorije
+								</a>
+								<div class="dropdown-menu" v-bind:class="{show: kategorijeExpanded}" aria-labelledby="navbarDropdown">
+									<router-link to="/" class="dropdown-item"><a @click="dropdownToggle">Najpopularniji</a></router-link>
+									<router-link v-for="kat in kategorije" :key="kat.naziv" v-show="!kat.obrisana" class="dropdown-item" :to="{ 
+																										path: '/kategorija',
+																										query: {
+																											kategorija : kat.naziv
+																										}
+																									}"
+									><a  v-on:click="dropdownToggle">{{kat.naziv}}</a></router-link>
+									<div v-show="uloga === 'Administrator'">
+									<div class="dropdown-divider" ></div>
+										<router-link to="/kategorije" class="dropdown-item" ><a v-on:click="dropdownToggle">Kategorije(Admin)</a></router-link>
+									</div>
+								</div>
+							</li>
+							<li class="nav-item"><router-link class="nav-link" to="/korisnici">Korisnici</router-link></li>
+							<li class="nav-item" v-if="korisnik"><router-link to="/nalog" class="nav-link" >Nalog</router-link></li>			
+							<li class="nav-item" v-if="korisnik"><a href="#" class="nav-link" v-on:click.prevent="odjaviSe">Odjavi&nbspse</a></li>		
+							<li class="nav-item" v-else><router-link class="nav-link" to="/prijava">Prijava/Registracija</router-link></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<div id="master-wrap">
+				<div class="container">
+					<div class="content-wrap" v-if="pretraga">
+						<h5 class="title"><p class="text">Pretraga</p></h5>
+						<div class="row">
+							<div class="col-7">
+								<h5 class="title"><p class="text">Oglas</p></h5>
+								<form accept-charset="UTF-8">
+									<div class="form-group row">
+										<label class="col-2 labels" for="inputNaziv">Naziv</label>
+										<div class="col-10">
+											<input class="form-control" id="inputNaziv" type="text" placeholder="Unesite naziv oglasa" v-model="naziv">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-2 labels">Cena od</label>
+										<div class="col-4">
+											<input type="number" step="0.01" class="form-control" placeholder="0" v-model="cenaMin"> 
+										</div>
+										<label class="col-2 labels" style="text-align: center">do</label>
+										<div class="col-4">
+											<input type="number" step="0.01" class="form-control" placeholder="0" v-model="cenaMax">
+										</div>
+									</div>
+									<div class="form-group row">
+											<label class="col-2 labels">Lajkovi od</label>
+											<div class="col-4">
+												<input type="number" step="0.01" class="form-control" placeholder="0" v-model="ocenaMin">
+											</div>
+											<label class="col-2 labels" style="text-align: center">do</label>
+											<div class="col-4">
+												<input type="number" step="0.01" class="form-control" placeholder="0" v-model="ocenaMax">
+											</div>
+										</div>
+									<div class="form-group row">
+										<label class="col-2 labels">Datum od</label>
+										<div class="col-4">
+											<input type="date" class="form-control" v-model="datumMin">
+										</div>
+										<label class="col-2 labels" style="text-align: center">do</label>
+										<div class="col-4">
+											<input type="date" class="form-control" v-model="datumMax">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-2 labels">Grad</label>
+										<div class="col-10">
+											<select class="form-control" v-model="grad">
+												<option placeholer="Svi"></option>
+												<option v-if="gradovi" v-for="grad in gradovi">
+													{{grad}}
+												</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group row" v-if="korisnik && korisnik.uloga != 'Administrator'">
+										<label class="col-2 labels">Status</label>
+										<div class="col-10">
+											<select class="form-control" v-model="status">
+												<option>Aktivan</option>
+												<option>Realizacijia</option>
+												<option>Dostavljen</option>
+											</select>
+										</div>
+									</div>
+									<router-link class="btn btn-light" :to="{
+										path : '/pretragaOglas',
+										query : {
+											naziv : naziv,
+											cenaMin : cenaMin,
+											cenaMax : cenaMax,
+											ocenaMin : ocenaMin,
+											ocenaMax : ocenaMax,
+											datumMin : datumMin,
+											datumMax : datumMax,
+											grad : grad,
+											status : status
+										}
+									}">Pretazi</router-link>
+								</form>
+							</div>
+							<div class="col-5">
+								<h5 class="title"><p class="text">Korisnici</p></h5>
+								<form accept-charset="UTF-8">
+									<div class="form-group row">
+										<label class="col-2 labels">Ime</label>
+										<div class="col-10">
+											<input type="txt" class="form-control" placeholder="Unesite ime korisnika" v-model="ime">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-2 labels">Grad</label>
+										<div class="col-10">
+											<input type="txt" class="form-control" placeholder="Unesite grad" v-model="gradKorisnik">
+										</div>
+									</div>
+									<router-link class="btn btn-light" :to="{
+										path: '/pretragaKorisnik',
+										query : {
+											ime : ime,
+											grad : gradKorisnik
+										}
+									}">Pretrazi</router-link>
+								</form>
+							</div>
+						</div>
+					</div>
+					<router-view></router-view>
+				</div>
+			</div>
+		</div>
+		<script src="administratorKlinike.js"></script>
+		<script src="prijava.js"></script>
+		<script src="pocetna.js"></script>
+		<script src="korisnici.js"></script>
+		<script src="korisnik.js"></script>
+		<script src="nalog.js"></script>
+		<script src="kategorije.js"></script>
+		<script src="objavi.js"></script>
+		<script src="oglas.js"></script>	
+		<script src="poruke.js"></script>
+		<script src="js/index.js"></script>
+    </body>
+</html>
